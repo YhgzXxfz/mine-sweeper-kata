@@ -6,6 +6,10 @@ public class MineSweeper {
     }
 
     public void update(int x, int y) {
+        if (board[x][y] != 'M' || board[x][y] != 'E') {
+            return;
+        }
+
         if (board[x][y] == 'M') {
             board[x][y] = 'X';
             return;

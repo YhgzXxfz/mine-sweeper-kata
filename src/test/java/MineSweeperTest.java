@@ -60,4 +60,27 @@ public class MineSweeperTest {
         // Then
         assertThat(mineSweeper.board[0][2]).isEqualTo('B');
     }
+
+    @Test
+    public void do_not_change_a_square_which_is_not_mine_nor_empty() {
+        // Given
+        char[][] board = {
+                {'X', '2', 'E'},
+                {'1', '2', 'M'},
+                {'E', 'E', 'E'}
+        };
+        MineSweeper mineSweeper = new MineSweeper(board);
+
+        // When
+        mineSweeper.update(0, 0);
+        mineSweeper.update(0, 1);
+        mineSweeper.update(1, 0);
+        mineSweeper.update(1, 1);
+
+        // Then
+        assertThat(mineSweeper.board[0][0]).isEqualTo('X');
+        assertThat(mineSweeper.board[0][1]).isEqualTo('2');
+        assertThat(mineSweeper.board[1][0]).isEqualTo('1');
+        assertThat(mineSweeper.board[1][1]).isEqualTo('2');
+    }
 }
