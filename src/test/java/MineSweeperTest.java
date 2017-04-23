@@ -83,4 +83,33 @@ public class MineSweeperTest {
         assertThat(mineSweeper.board[1][0]).isEqualTo('1');
         assertThat(mineSweeper.board[1][1]).isEqualTo('2');
     }
+
+    @Test
+    public void change_an_empty_square_and_all_its_adjacent_empty_squares_to_b_when_it_is_revealed_with_no_mine_surrounded() {
+        // Given
+        char[][] board = {
+                {'E', 'E', 'E'},
+                {'E', 'M', 'E'},
+                {'E', 'E', 'E'},
+                {'E', 'E', 'E'}
+        };
+        MineSweeper mineSweeper = new MineSweeper(board);
+
+        // WHen
+        mineSweeper.update(3, 0);
+
+        // Then
+        assertThat(mineSweeper.board[0][0]).isEqualTo('E');
+        assertThat(mineSweeper.board[0][1]).isEqualTo('E');
+        assertThat(mineSweeper.board[0][2]).isEqualTo('E');
+        assertThat(mineSweeper.board[1][0]).isEqualTo('E');
+        assertThat(mineSweeper.board[1][1]).isEqualTo('M');
+        assertThat(mineSweeper.board[1][2]).isEqualTo('E');
+        assertThat(mineSweeper.board[2][0]).isEqualTo('1');
+        assertThat(mineSweeper.board[2][1]).isEqualTo('1');
+        assertThat(mineSweeper.board[2][2]).isEqualTo('1');
+        assertThat(mineSweeper.board[3][0]).isEqualTo('B');
+        assertThat(mineSweeper.board[3][1]).isEqualTo('B');
+        assertThat(mineSweeper.board[3][2]).isEqualTo('B');
+    }
 }
